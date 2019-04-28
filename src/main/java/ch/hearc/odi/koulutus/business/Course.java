@@ -1,0 +1,72 @@
+package ch.hearc.odi.koulutus.business;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Course {
+
+  private Long id;
+  private Quarter quarter;
+  private int year;
+  private int maxNumberOfParticipants;
+  private Status status;
+  private List<Session> sessions;
+
+  public Course() {
+    sessions = new ArrayList<>();
+  }
+
+  public Course(Quarter quarter, int year, int maxNumberOfParticipants,
+      Status status, List<Session> sessions) {
+    this();
+    this.quarter = quarter;
+    this.year = year;
+    this.maxNumberOfParticipants = maxNumberOfParticipants;
+    this.status = status;
+    this.sessions = sessions;
+  }
+
+  public Long getId() {
+    return id;
+  }
+
+  public Quarter getQuarter() {
+    return quarter;
+  }
+
+  public void setQuarter(Quarter quarter) {
+    this.quarter = quarter;
+  }
+
+  public int getYear() {
+    return year;
+  }
+
+  public void setYear(int year) {
+    this.year = year;
+  }
+
+  public int getMaxNumberOfParticipants() {
+    return maxNumberOfParticipants;
+  }
+
+  public void setMaxNumberOfParticipants(int maxNumberOfParticipants) {
+    this.maxNumberOfParticipants = maxNumberOfParticipants;
+  }
+
+  public Status getStatus() {
+    return status;
+  }
+
+  public void setStatus(Status status) {
+    this.status = status;
+  }
+
+  public List<Session> getSessions() {
+    return sessions;
+  }
+
+  public void setSessions(List<Session> sessions) {
+    this.sessions = sessions;
+  }
+}
