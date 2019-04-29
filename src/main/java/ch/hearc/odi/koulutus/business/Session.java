@@ -1,5 +1,6 @@
 package ch.hearc.odi.koulutus.business;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +10,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table
-public class Session {
+public class Session  {
 
   @Id
   @GeneratedValue(generator = "increment")

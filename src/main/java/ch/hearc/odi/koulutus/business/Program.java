@@ -24,7 +24,7 @@ public class Program {
   private String field;
   private int price;
 
-  @OneToMany(targetEntity = Program.class, fetch = FetchType.EAGER)
+  @OneToMany(fetch = FetchType.EAGER, orphanRemoval = true)
   @JoinColumn(name = "program_id")
   private List<Course> courses;
 

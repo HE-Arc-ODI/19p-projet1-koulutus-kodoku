@@ -24,9 +24,11 @@ public class Course {
   private int maxNumberOfParticipants;
   private Status status;
 
-  @OneToMany(targetEntity = Session.class, fetch = FetchType.EAGER)
+  @OneToMany(fetch = FetchType.EAGER, orphanRemoval = true)
   @JoinColumn(name = "course_id")
   private List<Session> sessions;
+
+  //private List<Participant> participants;
 
   public Course() {
     sessions = new ArrayList<>();
