@@ -2,8 +2,12 @@ package ch.hearc.odi.koulutus.services;
 
 import static org.junit.Assert.*;
 
+import ch.hearc.odi.koulutus.business.Course;
 import ch.hearc.odi.koulutus.business.Pojo;
+import ch.hearc.odi.koulutus.business.Quarter;
 import ch.hearc.odi.koulutus.business.Session;
+import ch.hearc.odi.koulutus.business.Status;
+import java.util.Arrays;
 import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -76,5 +80,22 @@ public class PersistenceServiceTest {
     Session actualSession = persistenceService.getSessionById(sessionId);
 
     assertSame(actualSession.getRoom(), sessionRoomName);
+  }
+
+  @Test
+  public void getAllCoursesTest() {
+    Session session1 = persistenceService.createAndPersistSession(null, null, null, "room1");
+    Session session2 = persistenceService.createAndPersistSession(null, null, null, "room2");
+    Session session3 = persistenceService.createAndPersistSession(null, null, null, "room3");
+    Session session4 = persistenceService.createAndPersistSession(null, null, null, "room4");
+
+    persistenceService.createAndPersistCourse(Quarter.Q1, 2010, 10, Status.OPEN, Arrays.asList(session1));
+    persistenceService.createAndPersistCourse(Quarter.Q2, 2010, 10, Status.OPEN, Arrays.asList(session2));
+    persistenceService.createAndPersistCourse(Quarter.Q3, 2010, 10, Status.OPEN, Arrays.asList(session3));
+    persistenceService.createAndPersistCourse(Quarter.Q4, 2010, 10, Status.OPEN, Arrays.asList(session4));
+
+    List<Course> courses = persistenceService.getCourses();
+
+    assertEquals(session1.getRoom(), courses.get(0).getSessions().get(0).getRoom());
   }
 }
