@@ -5,8 +5,11 @@
 package ch.hearc.odi.koulutus.services;
 
 
+import ch.hearc.odi.koulutus.business.Course;
 import ch.hearc.odi.koulutus.business.Pojo;
+import ch.hearc.odi.koulutus.business.Quarter;
 import ch.hearc.odi.koulutus.business.Session;
+import ch.hearc.odi.koulutus.business.Status;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -68,6 +71,36 @@ public class PersistenceService {
     entityManager.close();
     return session;
   }
+
+  public List<Course> getCourses(){
+    EntityManager entityManager = entityManagerFactory.createEntityManager();
+    entityManager.getTransaction().begin();
+    List<Course> courses = entityManager.createQuery("from Course", Course.class).getResultList();
+    entityManager.getTransaction().commit();
+    entityManager.close();
+    return courses;
+  }
+
+  public Course getCourseById(Long courseId) {
+    EntityManager entityManager = entityManagerFactory.createEntityManager();
+    entityManager.getTransaction().begin();
+    Course session = entityManager.find(Course.class, courseId);
+    entityManager.getTransaction().commit();
+    entityManager.close();
+    return session;
+  }
+
+  public Course createAndPersistCourse(Quarter quarter, int year, int maxNumberOfParticipants,
+      Status status, List<Session> sessions){
+    EntityManager entityManager = entityManagerFactory.createEntityManager();
+    entityManager.getTransaction().begin();
+    Course course = new Course(quarter, year, maxNumberOfParticipants, status, sessions);
+    entityManager.persist(course);
+    entityManager.getTransaction().commit();
+    entityManager.close();
+    return course;
+  }
+
 
 
 
