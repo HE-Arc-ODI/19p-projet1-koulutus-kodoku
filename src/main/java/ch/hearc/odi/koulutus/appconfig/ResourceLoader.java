@@ -16,6 +16,7 @@ public class ResourceLoader extends ResourceConfig {
   public ResourceLoader() {
     //  TODO: register resources
     register(ServiceFeature.class);
+    packages("ch.hearc.odi.koulutus.rest");
     registerInstances(new ServiceBinder());
   }
 
