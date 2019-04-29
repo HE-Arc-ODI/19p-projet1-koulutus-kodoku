@@ -6,6 +6,7 @@ package ch.hearc.odi.koulutus.services;
 
 
 import ch.hearc.odi.koulutus.business.Course;
+import ch.hearc.odi.koulutus.business.Participant;
 import ch.hearc.odi.koulutus.business.Pojo;
 import ch.hearc.odi.koulutus.business.Program;
 import ch.hearc.odi.koulutus.business.Quarter;
@@ -135,6 +136,35 @@ public class PersistenceService {
     return program;
   }
 
+  public List<Participant> getParticipants() {
+    EntityManager entityManager = entityManagerFactory.createEntityManager();
+    entityManager.getTransaction().begin();
+    List<Participant> participants = entityManager.createQuery("from Participant", Participant.class)
+        .getResultList();
+    entityManager.getTransaction().commit();
+    entityManager.close();
+    return participants;
+  }
+
+  public Participant getParticipantById(Long participantId) {
+    EntityManager entityManager = entityManagerFactory.createEntityManager();
+    entityManager.getTransaction().begin();
+    Participant participant = entityManager.find(Participant.class, participantId);
+    entityManager.getTransaction().commit();
+    entityManager.close();
+    return participant;
+  }
+
+  public Participant createAndPersistParticipant(String firstName, String lastName, Date birthdate,
+      List<Course> courses) {
+    EntityManager entityManager = entityManagerFactory.createEntityManager();
+    entityManager.getTransaction().begin();
+    Participant participant = new Participant(firstName, lastName, birthdate, courses);
+    entityManager.persist(participant);
+    entityManager.getTransaction().commit();
+    entityManager.close();
+    return participant;
+  }
 }
 
 
