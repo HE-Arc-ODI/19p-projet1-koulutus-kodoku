@@ -76,6 +76,25 @@ public class PersistenceService {
     return session;
   }
 
+  public void deleteSession(Long sessionId) {
+    EntityManager entityManager = entityManagerFactory.createEntityManager();
+    entityManager.getTransaction().begin();
+    Session session = entityManager.find(Session.class, sessionId);
+    entityManager.remove(session);
+    entityManager.getTransaction().commit();
+    entityManager.close();
+  }
+
+  public Session updateSession(Long courseId, Session newSession) {
+    EntityManager entityManager = entityManagerFactory.createEntityManager();
+    entityManager.getTransaction().begin();
+    Session session = entityManager.find(Session.class, courseId);
+    session.update(newSession);
+    entityManager.getTransaction().commit();
+    entityManager.close();
+    return session;
+  }
+
   public List<Course> getCourses() {
     EntityManager entityManager = entityManagerFactory.createEntityManager();
     entityManager.getTransaction().begin();
@@ -100,6 +119,25 @@ public class PersistenceService {
     entityManager.getTransaction().begin();
     Course course = new Course(quarter, year, maxNumberOfParticipants, status, sessions);
     entityManager.persist(course);
+    entityManager.getTransaction().commit();
+    entityManager.close();
+    return course;
+  }
+
+  public void deleteCourse(Long courseId) {
+    EntityManager entityManager = entityManagerFactory.createEntityManager();
+    entityManager.getTransaction().begin();
+    Course course = entityManager.find(Course.class, courseId);
+    entityManager.remove(course);
+    entityManager.getTransaction().commit();
+    entityManager.close();
+  }
+
+  public Course updateCourse(Long courseId, Course newCourse) {
+    EntityManager entityManager = entityManagerFactory.createEntityManager();
+    entityManager.getTransaction().begin();
+    Course course = entityManager.find(Course.class, courseId);
+    course.update(newCourse);
     entityManager.getTransaction().commit();
     entityManager.close();
     return course;
@@ -136,6 +174,25 @@ public class PersistenceService {
     return program;
   }
 
+  public void deleteProgram(Long programId) {
+    EntityManager entityManager = entityManagerFactory.createEntityManager();
+    entityManager.getTransaction().begin();
+    Program program = entityManager.find(Program.class, programId);
+    entityManager.remove(program);
+    entityManager.getTransaction().commit();
+    entityManager.close();
+  }
+
+  public Program updateProgram(Long programId, Program newProgram) {
+    EntityManager entityManager = entityManagerFactory.createEntityManager();
+    entityManager.getTransaction().begin();
+    Program program = entityManager.find(Program.class, programId);
+    program.update(newProgram);
+    entityManager.getTransaction().commit();
+    entityManager.close();
+    return program;
+  }
+
   public List<Participant> getParticipants() {
     EntityManager entityManager = entityManagerFactory.createEntityManager();
     entityManager.getTransaction().begin();
@@ -165,6 +222,27 @@ public class PersistenceService {
     entityManager.close();
     return participant;
   }
+
+  public void deleteParticipant(Long participantId) {
+    EntityManager entityManager = entityManagerFactory.createEntityManager();
+    entityManager.getTransaction().begin();
+    Participant participant = entityManager.find(Participant.class, participantId);
+    entityManager.remove(participant);
+    entityManager.getTransaction().commit();
+    entityManager.close();
+  }
+
+  public Participant updateParticipant(Long participantId, Participant newParticipant) {
+    EntityManager entityManager = entityManagerFactory.createEntityManager();
+    entityManager.getTransaction().begin();
+    Participant participant = entityManager.find(Participant.class, participantId);
+    participant.update(newParticipant);
+    entityManager.getTransaction().commit();
+    entityManager.close();
+    return participant;
+  }
+
+
 }
 
 

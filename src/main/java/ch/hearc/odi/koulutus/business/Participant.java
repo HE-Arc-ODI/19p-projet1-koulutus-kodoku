@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.servlet.http.Part;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
@@ -73,5 +74,12 @@ public class Participant {
 
   public void setCourses(List<Course> courses) {
     this.courses = courses;
+  }
+
+  public void update(Participant newParticipant) {
+    setFirstName(newParticipant.getFirstName());
+    setLastName(newParticipant.getLastName());
+    setBirthdate(newParticipant.getBirthdate());
+    setCourses(newParticipant.getCourses());
   }
 }

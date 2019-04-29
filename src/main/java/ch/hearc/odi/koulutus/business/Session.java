@@ -66,4 +66,11 @@ public class Session  {
   public void setRoom(String room) {
     this.room = room;
   }
+
+  public void update(Session newSession) {
+    setStartDateTime(newSession.getStartDateTime());
+    setEndDateTime(newSession.getEndDateTime());
+    setPrice(newSession.getPrice());
+    setRoom(newSession.getRoom());
+  }
 }

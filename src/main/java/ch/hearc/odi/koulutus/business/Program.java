@@ -85,4 +85,12 @@ public class Program {
   public void setCourses(List<Course> courses) {
     this.courses = courses;
   }
+
+  public void update(Program newProgram) {
+    setName(newProgram.getName());
+    setRichDescription(newProgram.getRichDescription());
+    setField(newProgram.getField());
+    setPrice(newProgram.getPrice());
+    setCourses(newProgram.getCourses());
+  }
 }

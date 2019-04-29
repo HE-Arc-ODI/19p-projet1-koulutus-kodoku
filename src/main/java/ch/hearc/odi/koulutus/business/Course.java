@@ -87,4 +87,12 @@ public class Course {
   public void setSessions(List<Session> sessions) {
     this.sessions = sessions;
   }
+
+  public void update(Course newCourse) {
+    setQuarter(newCourse.getQuarter());
+    setYear(newCourse.getYear());
+    setMaxNumberOfParticipants(newCourse.getMaxNumberOfParticipants());
+    setStatus(newCourse.getStatus());
+    setSessions(newCourse.getSessions());
+  }
 }
