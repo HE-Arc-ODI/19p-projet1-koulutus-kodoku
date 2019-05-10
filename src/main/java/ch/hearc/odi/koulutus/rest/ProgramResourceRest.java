@@ -31,7 +31,7 @@ public class ProgramResourceRest {
   }
 
   @POST
-  public void createProgram(Program program) {
+  public void createProgram(Program program) { // FIXME: manque @consumes
     persistenceService.createAndPersistProgram(program.getName(), program.getRichDescription(),
         program.getField(), program.getPrice(), program.getCourses());
   }
